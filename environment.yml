@@ -1,0 +1,9 @@
+name: 522-dockerfile-practice
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - scikit-learn
+  - numpy
+  - pandas
+  - altair
