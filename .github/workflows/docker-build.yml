@@ -40,7 +40,7 @@ jobs:
 
       - name: Run conda-lock
         shell: "bash -l {0}"
-        run: make cl
+        run: conda-lock lock --file environment.yml -p linux-64 -k explicit
 
       # checks if the conda-linux-64.yml file has any changes
       - name: Check for changes
