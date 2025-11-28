@@ -7,6 +7,7 @@ RUN mamba install -y -n base -c conda-forge conda-lock && \
     mamba create -y -n dsci522 --file /tmp/conda-linux-64.lock && \
     mamba clean -afy && \
     rm -f /tmp/conda-linux-64.lock
+    
 USER ${NB_UID}
 
 # Use the dsci522 environment by default and start JupyterLab when the container runs.
