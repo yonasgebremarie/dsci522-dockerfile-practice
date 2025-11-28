@@ -2,8 +2,9 @@ name: 522-dockerfile-practice
 channels:
   - conda-forge
 dependencies:
-  - python
-  - scikit-learn
-  - numpy
-  - pandas
-  - altair
+  - python=3.14.0 
+  - altair=6.0.0
+  - numpy= 2.3.5
+  - scikit-learn=1.7.2 
+  - pandas=2.3.3
+
