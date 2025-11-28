@@ -6,7 +6,7 @@ on:
     paths:
       - 'environment.yml'
       - 'Dockerfile'
-      - 'conda-linux-64.yml'
+      - 'conda-linux-64.lock'
       - '.github/workflows/docker-build.yml'
   # also allow manual trigger
   workflow_dispatch:
@@ -42,24 +42,24 @@ jobs:
         shell: "bash -l {0}"
         run: conda-lock lock --file environment.yml -p linux-64 -k explicit
 
-      # checks if the conda-linux-64.yml file has any changes
+      # checks if the conda-linux-64.lock file has any changes
       - name: Check for changes
         id: check-changes
         run: |
-          if git diff --quiet conda-linux-64.yml; then
+          if git diff --quiet conda-linux-64.lock; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      # if the conda-linux-64.yml file has changed, push the changes to the repo
+      # if the conda-linux-64.lock file has changed, push the changes to the repo
       - name: Commit and push lock file
         if: steps.check-changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add conda-linux-64.yml
-          git commit -m ":wrench: Update conda-linux-64.yml"
+          git add conda-linux-64.lock
+          git commit -m ":wrench: Update conda-linux-64.lock"
           git push origin main
 
   build-and-push-docker:
